@@ -111,7 +111,7 @@ class Assignment extends Abstract implements printable {
         ob3.fun4();
         System.out.println("--------Run time Polymorphism--------");
         b.run();
-        // System.out.println("First letter in command line argument is"+args[0]);
+        System.out.println("First letter in command line argument is"+args[0]);
         sc.close();
     }
 }
