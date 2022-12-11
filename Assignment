@@ -1,0 +1,117 @@
+import java.util.Scanner;
+
+class cons {
+    int c = 10;
+    static {
+        System.out.println("This is static block");
+    }
+
+    cons() {
+        System.out.println("No argument is passed");
+    }
+
+    cons(int c) {
+        this.c = c;
+        System.out.println("After this keyword in constructor with 1 argument is used " + c);
+    }
+}
+
+class A {
+    int ab = 1;
+
+    void fun(int... a) {
+        System.out.print("Variable length arguments:");
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println();
+    }
+
+    void fun(int a) {
+        System.out.println("In main class after method overloading");
+    }
+}
+
+class B extends A {
+    void fun1() {
+        System.out.println("ab:" + ab);
+    }
+
+    void dmd() {
+        System.out.println("This method is used in run time polymorphism");
+    }
+}
+
+class C extends B {
+    void fun2() {
+        System.out.println("In class C ab:" + ab);
+    }
+
+    void fun3() {
+        super.fun1();
+    }
+
+    final void fun4() {
+        System.out.println("Used final keyword which is not inerited");
+    }
+}
+
+abstract class Abstract {
+    abstract void method();
+
+    void run() {
+        System.out.println("I am running");
+    }
+}
+
+interface printable {
+    public void print();
+}
+
+class Assignment extends Abstract implements printable {
+    void method() {
+        System.out.println("This is abstract method");
+    }
+
+    public void print() {
+        System.out.println("This is Interface method");
+    }
+
+    void run() {
+        System.out.println("I am also running");
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("--------Constructor Overloading & Static Keyword--------");
+        cons ob1 = new cons();
+        cons ob2 = new cons(100);
+        System.out.println("--------Variable Length Arguments--------");
+        Assignment ob = new Assignment();
+        System.out.print("Enter the length of array:");
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        System.out.println("Enter the data:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        C ob3 = new C();
+        ob3.fun(arr);
+        Abstract b = new Assignment();
+        System.out.println("--------Abstraction--------");
+        ob.method();
+        System.out.println("--------Interface--------");
+        ob.print();
+        System.out.println("--------Inheritance--------");
+        ob3.fun(10);
+        ob3.fun1();
+        ob3.fun2();
+        System.out.println("After using super keyword");
+        ob3.fun3();
+        ob3.fun4();
+        System.out.println("--------Run time Polymorphism--------");
+        b.run();
+        // System.out.println("First letter in command line argument is"+args[0]);
+        sc.close();
+    }
+}
